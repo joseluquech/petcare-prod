@@ -37,7 +37,7 @@ import { TypeOrmModule } from '@nestjs/typeorm'
 			password: process.env.POSTGRES_PASSWORD,
 			database: process.env.POSTGRES_DB,
 			autoLoadEntities: true,
-			synchronize: true,
+			synchronize: false,
 			ssl: process.env.POSTGRES_SSL === 'true',
 			extra: {
 				ssl:

@@ -15,9 +15,10 @@ import { PetsService } from './pets.service'
 
 // Entities
 import { Pet } from './entities/pet.entity'
+import { AuthModule } from 'src/auth/auth.module'
 
 @Module({
-	imports: [TypeOrmModule.forFeature([Pet]), OwnersModule],
+	imports: [TypeOrmModule.forFeature([Pet]), OwnersModule, AuthModule],
 	controllers: [PetsController],
 	providers: [PetsService],
 	exports: [TypeOrmModule],

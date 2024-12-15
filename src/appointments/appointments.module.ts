@@ -14,9 +14,10 @@ import { AppointmentsService } from './appointments.service'
 import { Appointment } from './entities/appointment.entity'
 import { User } from 'src/users/entities/user.entity'
 import { Pet } from 'src/pets/entities/pet.entity'
+import { AuthModule } from 'src/auth/auth.module'
 
 @Module({
-	imports: [TypeOrmModule.forFeature([Appointment, User, Pet])],
+	imports: [TypeOrmModule.forFeature([Appointment, User, Pet]), AuthModule],
 	controllers: [AppointmentsController],
 	providers: [AppointmentsService],
 	exports: [TypeOrmModule],

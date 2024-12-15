@@ -12,9 +12,6 @@ import { Request } from 'express'
 // Jwt
 import { JwtService } from '@nestjs/jwt'
 
-// Constants
-import { jwtConstants } from '../constants/jwt.constants'
-
 @Injectable()
 export class AuthGuard implements CanActivate {
 	constructor(private readonly jwtService: JwtService) {}
@@ -26,9 +23,7 @@ export class AuthGuard implements CanActivate {
 		if (!token) throw new UnauthorizedException('Missing or invalid token')
 
 		try {
-			const payload = await this.jwtService.verifyAsync(token, {
-				secret: jwtConstants.secret,
-			})
+			const payload = await this.jwtService.verifyAsync(token)
 			// 💡 We're assigning the payload to the request object here
 			// so that we can access it in our route handlers
 			request['user'] = payload

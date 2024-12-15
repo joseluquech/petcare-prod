@@ -27,10 +27,10 @@ import config from 'src/config/config'
 					database,
 					synchronize: true,
 					autoLoadEntities: true,
-					ssl: process.env.NODE_ENV === 'true',
+					ssl: process.env.POSTGRES_SSL === 'true',
 					extra: {
 						ssl:
-							process.env.NODE_ENV === 'true'
+							process.env.POSTGRES_SSL === 'true'
 								? {
 										rejectUnauthorized: false,
 									}

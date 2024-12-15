@@ -5,7 +5,6 @@ import { Module } from '@nestjs/common'
 import { AppointmentsModule } from './appointments/appointments.module'
 import { AuthModule } from './auth/auth.module'
 import { ConfigModule } from '@nestjs/config'
-import { DatabaseModule } from './database/database.module'
 import { HttpModule } from '@nestjs/axios'
 import { OwnersModule } from './owners/owners.module'
 import { PetsModule } from './pets/pets.module'
@@ -16,9 +15,6 @@ import { WorkspacesModule } from './workspaces/workspaces.module'
 import { AppController } from './app.controller'
 
 // Config
-import { enviroments } from './config/enviroments'
-import config from './config/config'
-import configSchema from './config/configSchema'
 import { TypeOrmModule } from '@nestjs/typeorm'
 
 @Module({
@@ -47,7 +43,6 @@ import { TypeOrmModule } from '@nestjs/typeorm'
 		}),
 		AppointmentsModule,
 		AuthModule,
-		DatabaseModule,
 		HttpModule,
 		OwnersModule,
 		PetsModule,

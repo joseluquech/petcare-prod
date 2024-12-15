@@ -1,7 +1,6 @@
 // NestJS
 import { NestFactory } from '@nestjs/core'
 import { ValidationPipe } from '@nestjs/common'
-import { ConfigService } from '@nestjs/config'
 
 // Swagger
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger'
@@ -39,7 +38,7 @@ async function bootstrap() {
 	SwaggerModule.setup('docs', app, document)
 
 	await app.listen(port)
-	console.log(`Application is running on: http://localhost:${PROCESS.ENV}`)
+	console.log(`Application is running on: http://localhost:${port}`)
 }
 
 bootstrap()

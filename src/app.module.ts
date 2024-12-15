@@ -24,10 +24,7 @@ import { TypeOrmModule } from '@nestjs/typeorm'
 @Module({
 	imports: [
 		ConfigModule.forRoot({
-			envFilePath: enviroments[process.env.NODE_ENV] || '.env',
-			load: [config],
 			isGlobal: true,
-			validationSchema: configSchema,
 		}),
 		TypeOrmModule.forRoot({
 			type: 'postgres',
@@ -37,12 +34,16 @@ import { TypeOrmModule } from '@nestjs/typeorm'
 			password: process.env.POSTGRES_PASSWORD,
 			database: process.env.POSTGRES_DB,
 			autoLoadEntities: true,
-			synchronize: false,
-			ssl:
-				process.env.POSTGRES_SSL === 'true'
-					? { rejectUnauthorized: false }
-					: false,
-			logging: true,
+			synchronize: true,
+			ssl: process.env.POSTGRES_SSL === 'true',
+			extra: {
+				ssl:
+					process.env.POSTGRES_SSL === 'true'
+						? {
+								rejectUnauthorized: false,
+							}
+						: null,
+			},
 		}),
 		AppointmentsModule,
 		AuthModule,

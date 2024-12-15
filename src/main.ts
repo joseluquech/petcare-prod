@@ -12,8 +12,7 @@ import { AppModule } from './app.module'
 async function bootstrap() {
 	const app = await NestFactory.create(AppModule)
 
-	const configService = app.get(ConfigService)
-	const port = configService.get<number>('config.nestPort')
+	const port = process.env.PORT || 4000
 
 	app.setGlobalPrefix('api/v1')
 
@@ -40,7 +39,7 @@ async function bootstrap() {
 	SwaggerModule.setup('docs', app, document)
 
 	await app.listen(port)
-	console.log(`Application is running on: http://localhost:${port}`)
+	console.log(`Application is running on: http://localhost:${PROCESS.ENV}`)
 }
 
 bootstrap()

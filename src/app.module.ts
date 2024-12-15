@@ -19,6 +19,7 @@ import { AppController } from './app.controller'
 import { enviroments } from './config/enviroments'
 import config from './config/config'
 import configSchema from './config/configSchema'
+import { TypeOrmModule } from '@nestjs/typeorm'
 
 @Module({
 	imports: [
@@ -27,6 +28,25 @@ import configSchema from './config/configSchema'
 			load: [config],
 			isGlobal: true,
 			validationSchema: configSchema,
+		}),
+		TypeOrmModule.forRoot({
+			type: 'postgres',
+			host: process.env.POSTGRES_HOST,
+			port: parseInt(process.env.POSTGRES_PORT),
+			username: process.env.POSTGRES_USER,
+			password: process.env.POSTGRES_PASSWORD,
+			database: process.env.POSTGRES_DB,
+			autoLoadEntities: true,
+			synchronize: true,
+			ssl: process.env.POSTGRES_SSL === 'true',
+			extra: {
+				ssl:
+					process.env.POSTGRES_SSL === 'true'
+						? {
+								rejectUnauthorized: false,
+							}
+						: null,
+			},
 		}),
 		AppointmentsModule,
 		AuthModule,

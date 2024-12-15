@@ -27,6 +27,15 @@ import config from 'src/config/config'
 					database,
 					synchronize: true,
 					autoLoadEntities: true,
+					ssl: process.env.NODE_ENV === 'true',
+					extra: {
+						ssl:
+							process.env.NODE_ENV === 'true'
+								? {
+										rejectUnauthorized: false,
+									}
+								: null,
+					},
 				}
 			},
 		}),

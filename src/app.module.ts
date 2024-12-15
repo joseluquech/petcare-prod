@@ -38,15 +38,11 @@ import { TypeOrmModule } from '@nestjs/typeorm'
 			database: process.env.POSTGRES_DB,
 			autoLoadEntities: true,
 			synchronize: false,
-			ssl: process.env.POSTGRES_SSL === 'true',
-			extra: {
-				ssl:
-					process.env.POSTGRES_SSL === 'true'
-						? {
-								rejectUnauthorized: false,
-							}
-						: null,
-			},
+			ssl:
+				process.env.POSTGRES_SSL === 'true'
+					? { rejectUnauthorized: false }
+					: false,
+			logging: true,
 		}),
 		AppointmentsModule,
 		AuthModule,

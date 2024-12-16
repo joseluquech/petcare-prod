@@ -30,6 +30,7 @@ export class PetsService {
 	async findAll(user: UserActiveI) {
 		const pets = await this.petRepository.find({
 			where: { workspaceId: user.workspaceId },
+			relations: ['owner'],
 		})
 		return pets.map(pet => instanceToPlain(pet))
 	}
